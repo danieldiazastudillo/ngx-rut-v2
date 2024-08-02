@@ -1,5 +1,5 @@
 import { Directive, forwardRef } from '@angular/core';
-import { NG_VALIDATORS, UntypedFormControl } from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, UntypedFormControl, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 import { rutValidate } from '../helpers/rut-helpers';
 
 
@@ -12,6 +12,16 @@ export function validateRutFactory(rutValidate: Function) {
   };
 }
 
+export function RutValidatorReactive(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+
+    if(!control.value) {
+      return null;
+    }
+    return rutValidate(control.value) ? null : { invalidRut: true };
+  };
+}
+
 
 @Directive({
   selector: '[validateRut][ngModel],[validateRut][formControl]',
@@ -20,7 +30,7 @@ export function validateRutFactory(rutValidate: Function) {
   ],
   standalone: true
 })
-export class RutValidator {
+export class RutValidator implements Validator {
 
   private validator: Function;
 
