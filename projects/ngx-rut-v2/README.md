@@ -1,24 +1,85 @@
-# NgxRutV2
+ngx-rut-v2
+=============
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+Basado en [ngx-rut](https://github.com/danieldiazastudillo/ngx-rut) pero usando Angular con compontentes, directivas y validaciones _standalone_. Para uso en Angular con módulos se recomienda esa versión.
 
-## Code scaffolding
+Valida y formatea [RUT Chilenos](https://en.wikipedia.org/wiki/National_identification_number#Chile)
 
-Run `ng generate component component-name --project ngx-rut-v2` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-rut-v2`.
-> Note: Don't forget to add `--project ngx-rut-v2` or else it will be added to the default project in your `angular.json` file. 
+## Installation
 
-## Build
+```bash
+npm install --save ngx-rut-v2
+```
 
-Run `ng build ngx-rut-v2` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Uso
 
-## Publishing
+### Set-up:
 
-After building your library with `ng build ngx-rut-v2`, go to the dist folder `cd dist/ngx-rut-v2` and run `npm publish`.
+The easiest way to use this library is to import Ng2Rut in your app's main module.
 
-## Running unit tests
+```typescript
+...
+import { RutValidatorReactive, RutDirective, RutPipe } from 'ngx-rut-v2';
+...
 
-Run `ng test ngx-rut-v2` to execute the unit tests via [Karma](https://karma-runner.github.io).
+@Component({
+  selector: 'app-some-component',
+  standalone: true, //IMPORTANTE!
+  imports: [    
+    RutValidatorReactive,
+    RutDirective,
+    RutPipe
+  ] 
+})
+class SomeComponent { }
+```
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Uso
+
+El paquete expone diversas funciones de validación de RUTs. Sin embargo se recomienda usar:
+- `RutValidatorReactive`: Clase que implementa `Validator` para ser usada en formularios reactivos.
+- `RutValidator`: Expone la directiva `validateRut` (para `NgModel` o `inputs` en _Template-Driven Forms_)
+- `RutPipe`: Expone el _pipe_ para formatear texto como RUT
+- `RutDirective`: Expone la directiva `formatRut` para formateo de `inputs`
+
+
+##### Reactive Forms
+
+```typescript
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { RutValidatorReactive } from 'ngx-rut-v2';
+export class DemoAppComponent {
+  constructor () {
+    this.reactiveForm = fb.group({
+      rut: ['30972198', [Validators.required, RutValidatorReactive()]]
+    });
+  }
+}
+```
+
+##### Template-Driven Forms
+```html
+<input [(ngModel)]="user.rut" name="rut" validateRut required>
+```
+
+#### RutPipe
+
+```html
+{{ user.rut }}
+<!-- 30972198 -->
+{{ user.rut | rut }}
+<!-- 3.097.219-8 -->
+```
+
+#### formatRut (Directiva para inputs)
+```html
+<input [(ngModel)]="user.rut" name="rut" formatRut required>
+<!--
+(on blur)
+3.097.219-8
+
+(on focus)
+30972198
+-->
+```
