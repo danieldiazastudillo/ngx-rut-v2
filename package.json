@@ -1,6 +1,10 @@
 {
   "name": "ngx-rut-v2",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": {
+    "name": "Daniel Díaz Astudillo"
+  },
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
