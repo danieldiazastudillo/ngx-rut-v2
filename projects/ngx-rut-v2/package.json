@@ -1,6 +1,7 @@
 {
   "name": "ngx-rut-v2",
   "version": "1.5.0",
+  "private": false,
   "peerDependencies": {
     "@angular/common": "^18.1.0",
     "@angular/core": "^18.1.0"
