@@ -1,5 +1,4 @@
-ngx-rut-v2
-=============
+# ngx-rut-v2
 
 Basado en [ngx-rut](https://github.com/danieldiazastudillo/ngx-rut) pero usando Angular con compontentes, directivas y validaciones _standalone_. Para uso en Angular con módulos se recomienda esa versión.
 
@@ -11,11 +10,10 @@ Valida y formatea [RUT Chilenos](https://en.wikipedia.org/wiki/National_identifi
 npm install --save ngx-rut-v2
 ```
 
-## Uso
 
-### Set-up:
+## Set-up:
 
-The easiest way to use this library is to import Ng2Rut in your app's main module.
+Se deben importar las funciones, directivas & pipes directamente (standalones)
 
 ```typescript
 ...
@@ -35,7 +33,7 @@ class SomeComponent { }
 ```
 
 
-### Uso
+## Uso
 
 El paquete expone diversas funciones de validación de RUTs. Sin embargo se recomienda usar:
 - `RutValidatorReactive`: Clase que implementa `Validator` para ser usada en formularios reactivos.
@@ -44,8 +42,9 @@ El paquete expone diversas funciones de validación de RUTs. Sin embargo se reco
 - `RutDirective`: Expone la directiva `formatRut` para formateo de `inputs`
 
 
-##### Reactive Forms
+### Reactive Forms
 
+#### Componente
 ```typescript
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { RutValidatorReactive } from 'ngx-rut-v2';
@@ -58,12 +57,9 @@ export class DemoAppComponent {
 }
 ```
 
-##### Template-Driven Forms
-```html
-<input [(ngModel)]="user.rut" name="rut" validateRut required>
-```
+#### Template
 
-#### RutPipe
+##### Rut Pipe (standalone)
 
 ```html
 {{ user.rut }}
@@ -72,7 +68,7 @@ export class DemoAppComponent {
 <!-- 3.097.219-8 -->
 ```
 
-#### formatRut (Directiva para inputs)
+##### formatRut (Directiva para inputs)
 ```html
 <input [(ngModel)]="user.rut" name="rut" formatRut required>
 <!--
@@ -83,3 +79,25 @@ export class DemoAppComponent {
 30972198
 -->
 ```
+##### Error Form
+
+>IMPORTANTE: Por defecto el error que retorna la validación es `invalidRut`
+
+```html
+<mat-form-field>
+  <mat-label>RUT</mat-label>
+  <input matInput formControlName="rut" formatRut />
+  @if (mainForm.get('rut')?.hasError('invalidRut')) {
+    <mat-error>El RUT ingresado es <strong>inválido</strong></mat-error>
+  }
+</mat-form-field>
+```
+
+##### Template-Driven Forms
+```html
+<input [(ngModel)]="user.rut" name="rut" validateRut required>
+```
+
+
+
+
