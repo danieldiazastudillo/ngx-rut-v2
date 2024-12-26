@@ -4,6 +4,13 @@ Basado en [ngx-rut](https://github.com/danieldiazastudillo/ngx-rut) pero usando 
 
 Valida y formatea [RUT Chilenos](https://en.wikipedia.org/wiki/National_identification_number#Chile)
 
+## Compatibilidad
+
+| Versión ngx-rut-v2 | Versión Angular |
+|--------------------|-----------------|
+| 1.5.0              | 18              |
+| 1.6.0              | 19              |
+
 ## Installation
 
 ```bash

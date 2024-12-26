@@ -1,14 +1,14 @@
 {
   "name": "ngx-rut-v2",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/danieldiazastudillo/ngx-rut-v2"
   },
   "peerDependencies": {
-    "@angular/common": "^18.1.0",
-    "@angular/core": "^18.1.0"
+    "@angular/common": "^19.0.5",
+    "@angular/core": "^19.0.5"
   },
   "dependencies": {
     "tslib": "^2.3.0"
