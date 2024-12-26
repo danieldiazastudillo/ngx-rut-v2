@@ -5,6 +5,10 @@
     "name": "Daniel Díaz Astudillo"
   },
   "description": "Angular library to format and validate RUT (Rol Único Tributario) from Chile",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danieldiazastudillo/ngx-rut-v2"
+  },
   "license": "MIT",
   "scripts": {
     "ng": "ng",
