@@ -1,27 +1,15 @@
 import { Directive, forwardRef } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, UntypedFormControl, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 import { rutValidate } from '../helpers/rut-helpers';
 
-
-export function validateRutFactory(rutValidate: Function) {
-  return (c: UntypedFormControl) => {
-    if (!c.value) {
-      return null;
-    }
-    return rutValidate(c.value) ? null : { invalidRut: true };
-  };
-}
-
-export function RutValidatorReactive(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-
-    if(!control.value) {
-      return null;
-    }
-    return rutValidate(control.value) ? null : { invalidRut: true };
-  };
-}
-
+// Single reusable ValidatorFn
+export const rutValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const value = control.value;
+  if (!value) {
+    return null;
+  }
+  return rutValidate(value) ? null : { invalidRut: true };
+};
 
 @Directive({
   selector: '[validateRut][ngModel],[validateRut][formControl]',
@@ -31,15 +19,7 @@ export function RutValidatorReactive(): ValidatorFn {
   standalone: true
 })
 export class RutValidator implements Validator {
-
-  private validator: Function;
-
-  constructor() {
-    this.validator = validateRutFactory(rutValidate);
+  validate(control: AbstractControl): ValidationErrors | null {
+    return rutValidator(control);
   }
-
-  public validate(c: UntypedFormControl) {
-    return this.validator(c);
-  }
-
 }

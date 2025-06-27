@@ -1,34 +1,18 @@
-import {Directive, EventEmitter, Output} from '@angular/core';
-import * as rutHelpers from '../helpers/rut-helpers';
+import { Directive, HostListener } from '@angular/core';
+import { rutClean, rutFormat } from '../helpers/rut-helpers';
 
 @Directive({
   selector: '[formatRut]',
-  host: {
-    '(blur)': 'onBlur($event)',
-    '(focus)': 'onFocus($event)',
-    '(input)': 'onChange($event)',
-  },
   standalone: true
 })
 export class RutDirective {
-  @Output() public rutChange: EventEmitter<any>;
-
-  constructor() {
-    this.rutChange = new EventEmitter();
+  @HostListener('focus', ['$event.target'])
+  onFocus(input: HTMLInputElement) {
+    input.value = rutClean(input.value);
   }
 
-  public onFocus(ev: Event) {
-    let htmlInputElement: HTMLInputElement = <HTMLInputElement> ev.target;
-    htmlInputElement.value = rutHelpers.rutClean(htmlInputElement.value);
-  }
-
-  public onBlur(ev: Event) {
-    let htmlInputElement: HTMLInputElement = <HTMLInputElement> ev.target;
-    htmlInputElement.value = rutHelpers.rutFormat(htmlInputElement.value) || '';
-  }
-
-  public onChange(ev: Event) {
-    let htmlInputElement: HTMLInputElement = <HTMLInputElement> ev.target;
-    this.rutChange.emit(rutHelpers.rutClean(htmlInputElement.value));
+  @HostListener('blur', ['$event.target'])
+  onBlur(input: HTMLInputElement) {
+    input.value = rutFormat(input.value) || '';
   }
 }

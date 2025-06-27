@@ -1,8 +1,7 @@
-import { Directive, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { rutFormat } from '../helpers/rut-helpers';
 
-import { ElementRef, Renderer2 } from '@angular/core';
+import { Directive, forwardRef, ElementRef, Renderer2, HostListener } from '@angular/core';
+import { rutFormat, rutClean } from '../helpers/rut-helpers';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 const RUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -12,27 +11,45 @@ const RUT_VALUE_ACCESSOR: any = {
 
 @Directive({
   selector: 'input[formatRut]',
-  host: {
-    '(rutChange)': 'onChange($event)',
-    '(blur)': 'onTouched($event)',
-  },
   standalone: true,
   providers: [RUT_VALUE_ACCESSOR],
 })
 export class RutValueAccessor implements ControlValueAccessor {
+  private onChange: (value: any) => void = () => {};
+  private onTouched: () => void = () => {};
+
   constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
-    ) { }
+    private readonly renderer: Renderer2,
+    private readonly elementRef: ElementRef,
+  ) {}
 
-  public onChange: any = (_: any) => { /*Empty*/ };
-  public onTouched: any = () => { /*Empty*/ };
-
-  public writeValue(value: any): void {
-    let normalizedValue: string = rutFormat(value) || '';
-    this.renderer.setProperty(this.elementRef.nativeElement, 'value', normalizedValue);
+  @HostListener('input', ['$event.target.value'])
+  onInput(value: string) {
+    this.onChange(rutClean(value));
   }
 
-  public registerOnChange(fn: (_: any) => void): void { this.onChange = fn; }
-  public registerOnTouched(fn: () => void): void { this.onTouched = fn; }
+  @HostListener('blur')
+  onBlur() {
+    const value = this.elementRef.nativeElement.value;
+    const formatted = rutFormat(value);
+    this.renderer.setProperty(this.elementRef.nativeElement, 'value', formatted);
+    this.onTouched();
+  }
+
+  writeValue(value: any): void {
+    const formatted = rutFormat(value) || '';
+    this.renderer.setProperty(this.elementRef.nativeElement, 'value', formatted);
+  }
+
+  registerOnChange(fn: (_: any) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.renderer.setProperty(this.elementRef.nativeElement, 'disabled', isDisabled);
+  }
 }
