@@ -1,0 +1,41 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.7.0] - 2025-09-05
+
+### Fixed
+- Corrected README documentation to reflect actual implementation
+- Fixed import examples to use correct exports (`rutValidator`, `RutValidator`, etc.)
+- Removed references to non-existent `RutValidatorReactive`
+- Updated reactive forms examples to use proper `rutValidator` function
+- Added `RutValueAccessor` to documentation and examples
+- Fixed template examples for better accuracy
+
+### Changed
+- Updated compatibility table to include version 1.7.0
+
+## [1.6.4] - 2025-XX-XX
+
+### Added
+- Initial release with standalone components support
+- RUT validation and formatting helpers
+- Standalone directives for validation and formatting
+- Standalone pipe for RUT formatting
+- Support for Angular 19
+
+### Changed
+- Migrated from module-based to standalone components
+
+## [1.6.0] - 2025-XX-XX
+
+### Changed
+- Updated to Angular 19 compatibility
+
+## [1.5.0] - 2025-XX-XX
+
+### Changed
+- Updated to Angular 18 compatibility
