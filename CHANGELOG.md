@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.8.0] - 2025-10-06
+
+### Changed
+- Updated to Angular 20.3.3 compatibility
+- Updated @angular/cli to 20.3.4
+- Updated @angular/build to 20.3.4
+- Updated TypeScript to 5.9.3
+- Updated ng-packagr to 20.3.0
+- Updated peer dependencies to support Angular ^20.0.0
+
 ## [1.7.0] - 2025-09-05
 
 ### Fixed

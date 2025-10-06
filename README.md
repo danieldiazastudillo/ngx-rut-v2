@@ -11,6 +11,7 @@ Valida y formatea [RUT Chilenos](https://en.wikipedia.org/wiki/National_identifi
 | 1.5.0              | 18              |
 | 1.6.0              | 19              |
 | 1.7.0              | 19              |
+| 1.8.0              | 20              |
 
 ## Installation
 
