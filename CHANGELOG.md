@@ -1,3 +1,11 @@
+# ⚠️ DEPRECATION NOTICE
+
+This repository and package are now maintained in the new monorepo:
+
+👉 https://github.com/danieldiazastudillo/ngx-common-prosmart
+
+All future updates, issues, and contributions should be directed there. This package will continue to be published to NPM for compatibility.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.

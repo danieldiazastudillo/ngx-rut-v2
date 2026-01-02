@@ -5,12 +5,13 @@
   "author": {
     "name": "Daniel Díaz Astudillo"
   },
-  "description": "Angular library to format and validate RUT (Rol Único Tributario) from Chile",
+  "description": "[DEPRECATED] This package is now maintained in the ngx-common-prosmart monorepo: https://github.com/danieldiazastudillo/ngx-common-prosmart. Angular library to format and validate RUT (Rol Único Tributario) from Chile",
 
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danieldiazastudillo/ngx-rut-v2.git"
+    "url": "git+https://github.com/danieldiazastudillo/ngx-common-prosmart.git"
   },
+  "homepage": "https://github.com/danieldiazastudillo/ngx-common-prosmart",
   "peerDependencies": {
     "@angular/common": ">=20.0.0 <22.0.0",
     "@angular/core": ">=20.0.0 <22.0.0"

@@ -1,3 +1,10 @@
+# ⚠️ DEPRECATION NOTICE
+
+This repository is **deprecated** and no longer maintained. The codebase has moved to a new monorepo:
+
+👉 [https://github.com/danieldiazastudillo/ngx-common-prosmart](https://github.com/danieldiazastudillo/ngx-common-prosmart)
+
+Please use the new repository for all future updates, issues, and contributions.
 # ngx-rut-v2
 
 Basado en [ngx-rut](https://github.com/danieldiazastudillo/ngx-rut) pero usando Angular con componentes, directivas y validaciones _standalone_. Para uso en Angular con módulos se recomienda esa versión.
