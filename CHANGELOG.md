@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.9.0] - 2026-01-02
+
+### Changed
+- Updated to Angular 21.0.6 compatibility
+- Updated @angular/cli to 21.0.4
+- Updated @angular/build to 21.0.4
+- Updated TypeScript to 5.9.3
+- Updated ng-packagr to 21.0.1
+- Updated peer dependencies to support Angular 20 and 21 (>=20.0.0 <22.0.0)
+
 ## [1.8.0] - 2025-10-06
 
 ### Changed
